@@ -10,7 +10,17 @@ plugins:
 functions:
   hello:
     handler: handler.hello
-    
+    events:
+      - http: true,
+        x-azure-settings:
+          authLevel : anonymous
+          methods: post
+          route: /         
+      - http: true,
+        x-azure-settings:
+          direction: out
+          name: res 
+              
 package:
   exclude: 
     - 'test/**'
