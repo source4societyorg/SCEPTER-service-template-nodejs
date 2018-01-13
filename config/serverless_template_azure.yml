@@ -1,0 +1,22 @@
+service: ${file(./service_name.yml):service}-${opt:stage, 'dev'}
+provider:
+  name: azure
+  location: ${opt:location, 'West US'}
+  environment:
+    PROVIDER: 'azure'
+plugins: 
+  - serverless-azure-functions
+
+functions:
+  hello:
+    handler: handler.hello
+    
+package:
+  exclude: 
+    - 'test/**'
+    - 'coverage/**'
+    - 'LICENSE'
+    - 'README.md'
+    - '.travis.yml'
+    - 'docs/**'
+    - 'handler_aws.js'
