@@ -13,9 +13,7 @@ functions:
     events:
       - http: true,
         x-azure-settings:
-          authLevel : anonymous
-          methods: post
-          route: /         
+          authLevel : anonymous 
       - http: true,
         x-azure-settings:
           direction: out
@@ -29,4 +27,7 @@ package:
     - 'README.md'
     - '.travis.yml'
     - 'docs/**'
-    - 'handler_aws.js'
+    - 'config/**'
+    - '.gitignore'
+    - '.git/**'
+    - 'package.json'
