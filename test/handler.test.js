@@ -1,15 +1,16 @@
 test('hello handler handles error properly', (done) => {
-  const handler = require('../handler.js')
+  const helloHandler = require('../handler.hello')
   const mockService = {
-    hello: () => { throw new Error('test error') }
+    hello: () => { throw new Error('test error') },
+    prepareErrorResponse: () => done()
   }
 
-  handler.hello(undefined, undefined, (result) => done(), () => mockService)
+  helloHandler((result) => ({ done: done() }), undefined, (result) => done(), () => mockService)
 })
 
 test('handler injects optional dependencies', (done) => {
-  const handler = require('../handler.js')
-  handler.hello(
+  const helloHandler = require('../handler.hello')
+  helloHandler(
     undefined,
     undefined,
     () => done(),

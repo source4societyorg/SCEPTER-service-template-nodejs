@@ -20,5 +20,5 @@ test('prepareErrorResponse returns the error output of the service', () => {
 
 test('prepareSuccessResponse returns "hello"', () => {
   let service = new HelloService('test1', './test/credentials-test.json', './test/parameters-test.json', './test/services-test.json')
-  expect(service.prepareSuccessResponse()).toEqual('Hello')
+  expect(service.prepareSuccessResponse('Hello')).toEqual('Hello')
 })

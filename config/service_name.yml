@@ -1,1 +1,1 @@
-service: ${file(./parameters.json):appName}-ServiceName
+service: ${file(./parameters.json):appName}-ServiceTemplate

@@ -9,12 +9,16 @@ class HelloService {
     this.utilities = require('@source4society/scepter-utility-lib')
   }
 
+  hello (helloCallback) {
+    helloCallback(null, 'hello')
+  }
+
   prepareErrorResponse (error) {
     return error
   }
 
   prepareSuccessResponse (data) {
-    return 'Hello'
+    return data
   }
 }
 
