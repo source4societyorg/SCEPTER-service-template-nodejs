@@ -14,10 +14,6 @@ functions:
       - http: true,
         x-azure-settings:
           authLevel : anonymous 
-      - http: true,
-        x-azure-settings:
-          direction: out
-          name: res 
               
 package:
   exclude: 

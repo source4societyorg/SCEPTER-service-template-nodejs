@@ -14,11 +14,19 @@ class HelloService {
   }
 
   prepareErrorResponse (error) {
-    return error
+    let res = {}
+    res.status = error.code || 500
+    res.statusCode = error.code || 500
+    res.body = JSON.stringify(error.message || error || 'Unknown error')    
+    return res
   }
 
   prepareSuccessResponse (data) {
-    return data
+    let res = {}
+    res.status = 200
+    res.statusCode = 200
+    res.body = JSON.stringify(data)
+    return res
   }
 }
 
