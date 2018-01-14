@@ -12,8 +12,8 @@ functions:
     handler: handler.hello
     events:
       - http: true,
-        x-azure-settings:
-          authLevel : anonymous 
+        #x-azure-settings: #Uncommenting this will remove the need for the api key to be passed in the query string via ?code (see portal to access api key)
+          #authLevel : anonymous 
               
 package:
   exclude: 
