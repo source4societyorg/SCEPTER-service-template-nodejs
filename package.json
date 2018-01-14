@@ -12,7 +12,7 @@
     "sls": "sls"
   },
   "dependencies": {
-    "@source4society/scepter-utility-lib": "^0.0.5",
+    "@source4society/scepter-utility-lib": "^0.0.7",
     "aws-sdk": "^2.149.0",
     "eslint-plugin-jest": "^21.6.1",
     "mime-types": "^2.1.17",
