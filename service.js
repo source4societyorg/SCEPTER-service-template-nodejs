@@ -15,9 +15,9 @@ class HelloService {
 
   prepareErrorResponse (error) {
     let res = {}
-    res.status = error.code || 500
-    res.statusCode = error.code || 500
-    res.body = JSON.stringify(error.message || error || 'Unknown error')    
+    res.status = !this.utilities.isEmpty(error) ? error.code || 500 : 500
+    res.statusCode = !this.utilities.isEmpty(error) ? error.code || 500 : 500
+    res.body = JSON.stringify(!this.utilities.isEmpty(error) ? error.message || error : 'Unexpected Error')
     return res
   }
 

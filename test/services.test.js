@@ -15,10 +15,16 @@ test('service constructor defines properties', () => {
 test('prepareErrorResponse returns the error output of the service', () => {
   let service = new HelloService('test1', './test/credentials-test.json', './test/parameters-test.json', './test/services-test.json')
   const mockError = { message: 'error', code: 500 }
-  expect(service.prepareErrorResponse(mockError)).toEqual(mockError)
+  const mockError2 = 'error'
+  const expectedResponse = {body: '"error"', status: 500, statusCode: 500}
+  const expectedResponse2 = {body: '"Unexpected Error"', status: 500, statusCode: 500}
+  expect(service.prepareErrorResponse(mockError)).toEqual(expectedResponse)
+  expect(service.prepareErrorResponse(mockError2)).toEqual(expectedResponse)
+  expect(service.prepareErrorResponse()).toEqual(expectedResponse2)
 })
 
 test('prepareSuccessResponse returns "hello"', () => {
   let service = new HelloService('test1', './test/credentials-test.json', './test/parameters-test.json', './test/services-test.json')
-  expect(service.prepareSuccessResponse('Hello')).toEqual('Hello')
+  const expectedResponse = {body: '"Hello"', status: 200, statusCode: 200}
+  expect(service.prepareSuccessResponse('Hello')).toEqual(expectedResponse)
 })
