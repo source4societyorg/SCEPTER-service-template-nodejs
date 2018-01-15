@@ -15,6 +15,9 @@ class HelloService {
 
   prepareErrorResponse (error) {
     let res = {}
+    res.headers = {
+      'Content-Type': 'application/json'
+    }
     res.status = !this.utilities.isEmpty(error) ? error.code || 500 : 500
     res.statusCode = !this.utilities.isEmpty(error) ? error.code || 500 : 500
     res.body = JSON.stringify(!this.utilities.isEmpty(error) ? error.message || error : 'Unexpected Error')
@@ -23,6 +26,9 @@ class HelloService {
 
   prepareSuccessResponse (data) {
     let res = {}
+    res.headers = {
+      'Content-Type': 'application/json'
+    }
     res.status = 200
     res.statusCode = 200
     res.body = JSON.stringify(data)
