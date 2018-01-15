@@ -26,4 +26,3 @@ package:
     - 'config/**'
     - '.gitignore'
     - '.git/**'
-    - 'package.json'
