@@ -1,6 +1,6 @@
 {
   "name": "@source4society/SCEPTER-service-template",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Base template used for creating services",
   "main": "handler.js",
   "repository": "git@github.com:source4societyorg/SCEPTER-service-template",
@@ -16,8 +16,7 @@
     "aws-sdk": "^2.149.0",
     "eslint-plugin-jest": "^21.6.1",
     "mime-types": "^2.1.17",
-    "optional-require": "^1.0.0",
-    "serverless": "^1.25.0"
+    "optional-require": "^1.0.0"
   },
   "devDependencies": {
     "docco": "^0.7.0",
@@ -29,6 +28,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "eslint-plugin-jest": "^21.5.0",
     "jest-cli": "^21.2.1",
-    "serverless-azure-functions": "https://github.com/serverless/serverless-azure-functions"
+    "serverless-azure-functions": "https://github.com/serverless/serverless-azure-functions",
+    "serverless": "^1.25.0"
   }
 }
