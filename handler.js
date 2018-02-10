@@ -1,11 +1,10 @@
 'use strict'
-const universalHello = require('./handler.hello')
-const awsHello = (event, context, callback) => universalHello(event, context, callback)
-const azureHello = (context, req) => universalHello(req, context, (err, res) => context.done(err, res))
-switch (process.env.PROVIDER) {
-  case 'azure':
-    module.exports.hello = azureHello
-    break
-  default:
-    module.exports.hello = awsHello
+const utilities = require('@source4society/scepter-utility-lib')
+const genericHandlerFunction = require('@source4society/scepter-handlerutilities-lib').genericHandlerFunction
+
+module.exports.hello = (event, context, callback, injectedGenericHandler) => {
+  const genericHandler = utilities.valueOrDefault(injectedGenericHandler, genericHandlerFunction)
+  genericHandler(event, context, callback, (service, callbackHandler, errorHandler, successHandler, eventData) => {
+    service.hello((err, data) => callbackHandler(err, data, errorHandler, successHandler))
+  })
 }

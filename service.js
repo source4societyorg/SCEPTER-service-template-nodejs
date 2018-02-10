@@ -1,7 +1,12 @@
 'use strict'
 const optionalRequire = require('optional-require')(require)
+const utilities = require('@source4society/scepter-utility-lib')
 class HelloService {
-  constructor (stage = 'dev', credentialsPath = './credentials.json', parametersPath = './parameters.json', servicesPath = './services.json') {
+  constructor (injectedStage, injectedCredentialsPath, injectedParametersPath, injectedServicesPath) {
+    const stage = utilities.valueOrDefault(injectedStage, process.env.STAGE)
+    const credentialsPath = utilities.valueOrDefault(injectedCredentialsPath, './credentials')
+    const parametersPath = utilities.valueOrDefault(injectedParametersPath, './credentials')
+    const servicesPath = utilities.valueOrDefault(injectedServicesPath, './credentials')
     this.environment = stage
     this.credentials = optionalRequire(credentialsPath)
     this.services = optionalRequire(servicesPath)
@@ -10,7 +15,7 @@ class HelloService {
   }
 
   hello (helloCallback) {
-    helloCallback(null, 'hello')
+    helloCallback(null, 'hello world')
   }
 
   prepareErrorResponse (error) {
