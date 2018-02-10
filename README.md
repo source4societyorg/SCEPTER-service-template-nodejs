@@ -4,8 +4,7 @@
 
 [![js-standard-style](https://cdn.rawgit.com/standard/standard/master/badge.svg)](http://standardjs.com)
 
-[![Build Status](https://travis-ci.org/source4societyorg/SCEPTER-service-template-nodejs.svg?branch=master)]
-(https://travis-ci.org/source4societyorg/SCEPTER-service-template-nodejs)
+[![Build Status](https://travis-ci.org/source4societyorg/SCEPTER-service-template-nodejs.svg?branch=master)](https://travis-ci.org/source4societyorg/SCEPTER-service-template-nodejs)
 
 [![codecov](https://codecov.io/gh/source4societyorg/SCEPTER-service-template-nodejs/branch/master/graph/badge.svg)](https://codecov.io/gh/source4societyorg/SCEPTER-service-template-nodejs)
 
