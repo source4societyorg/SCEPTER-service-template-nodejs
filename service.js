@@ -1,43 +1,40 @@
 'use strict'
-const optionalRequire = require('optional-require')(require)
 const utilities = require('@source4society/scepter-utility-lib')
+// const DynamoDBLib = require('@source4society/scepter-dynamodb-lib')
+const fromJS = require('immutable').fromJS
 class HelloService {
-  constructor (injectedStage, injectedCredentialsPath, injectedParametersPath, injectedServicesPath) {
+  constructor (injectedStage, injectedCredentialsPath, injectedServicesPath, injectedParametersPath, injectedDynamoDB) {
     const stage = utilities.valueOrDefault(injectedStage, process.env.STAGE)
     const credentialsPath = utilities.valueOrDefault(injectedCredentialsPath, './credentials')
-    const parametersPath = utilities.valueOrDefault(injectedParametersPath, './credentials')
-    const servicesPath = utilities.valueOrDefault(injectedServicesPath, './credentials')
+    const servicesPath = utilities.valueOrDefault(injectedServicesPath, './services')
+    const parametersPath = utilities.valueOrDefault(injectedParametersPath, './parameters')
+    // const DynamoDB = utilities.valueOrDefault(injectedDynamoDB, DynamoDBLib)
     this.environment = stage
-    this.credentials = optionalRequire(credentialsPath)
-    this.services = optionalRequire(servicesPath)
-    this.parameters = optionalRequire(parametersPath)
-    this.utilities = require('@source4society/scepter-utility-lib')
+    this.credentials = fromJS(require(credentialsPath))
+    this.services = fromJS(require(servicesPath))
+    this.parameters = fromJS(require(parametersPath))
+    // this.dynamoDB = new DynamoDB()
+    // this.dynamoDB.setConfiguration(this.credentials, this.environment)
   }
 
   hello (helloCallback) {
     helloCallback(null, 'hello world')
   }
 
-  prepareErrorResponse (error) {
-    let res = {}
-    res.headers = {
-      'Content-Type': 'application/json'
+  prepareErrorResponse (error, injectedEnvironment) {
+    const environment = utilities.valueOrDefault(injectedEnvironment, this.environment)
+    const message = utilities.ifTrueElseDefault(environment === 'development', error.stack, error.message)
+    return {
+      status: false,
+      error: utilities.valueOrDefault(message, error)
     }
-    res.status = !this.utilities.isEmpty(error) ? error.code || 500 : 500
-    res.statusCode = !this.utilities.isEmpty(error) ? error.code || 500 : 500
-    res.body = JSON.stringify(!this.utilities.isEmpty(error) ? error.message || error : 'Unexpected Error')
-    return res
   }
 
   prepareSuccessResponse (data) {
-    let res = {}
-    res.headers = {
-      'Content-Type': 'application/json'
+    return {
+      status: true,
+      result: data
     }
-    res.status = 200
-    res.statusCode = 200
-    res.body = JSON.stringify(data)
-    return res
   }
 }
 
