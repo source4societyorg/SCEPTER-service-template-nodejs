@@ -36,4 +36,17 @@ This repository was designed to be used with the SCEPTER framework. Once you hav
 
   node bin/scepter service:create
 
-Command to build a new service.
+Command to automatically create a new service utilizing this template within your SCEPTER project.
+
+## Building
+
+To build output run
+
+  yarn buildaws
+
+or
+ 
+  yarn buildazure
+
+You can add initialization code within config/initialize.js which will be executed using node upon running the build command.
+

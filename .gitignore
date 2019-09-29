@@ -12,3 +12,10 @@ parameters.json
 serverless.yml
 #ignored for compatibility with powershell and bash
 yarn.lock
+SCEPTER-service-template-nodejs.code-workspace
+build/handler.js
+build/serverless.yml
+build/service_name.yml
+build/service.js
+build/package.json
+build/yarn.lock

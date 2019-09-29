@@ -1,4 +1,4 @@
-service: ${file(./config/service_name.yml):service}-${opt:stage, 'dev'}
+service: ${file(./service_name.yml):service}-${opt:stage, 'development'}
 provider:
   name: azure
   location: ${opt:location, 'West US'}
@@ -11,7 +11,7 @@ functions:
   hello:
     handler: handler.hello
     events:
-      - http: true,
+      - https: true,
         #x-azure-settings: #Uncommenting this will remove the need for the api key to be passed in the query string via ?code (see portal to access api key)
           #authLevel : anonymous 
               

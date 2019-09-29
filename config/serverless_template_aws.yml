@@ -1,21 +1,19 @@
-service: ${file(./config/service_name.yml):service}
+service: ${file(./service_name.yml):service}
 provider:
   name: aws
-  runtime: nodejs6.10
-  stage: ${opt:stage, 'dev'}
+  runtime: nodejs10.16
+  stage: ${opt:stage, 'development'}
   environment:
     STAGE: ${self:provider.stage}
     SLS_DEBUG: "*"
     PROVIDER: 'aws'
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - lambda:InvokeFunction
-        - lambda:InvokeAsync
-      Resource: "*"
 functions:
   hello:
     handler: handler.hello
+    events:
+      - https:
+        path: hello
+        method: post
 package:
   exclude: 
     - 'test/**'

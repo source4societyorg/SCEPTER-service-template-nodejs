@@ -1,33 +1,36 @@
 {
   "name": "@source4society/SCEPTER-service-template",
-  "version": "1.2.0",
-  "description": "Base template used for creating services. Add '@source4society/scepter-dynamodb-lib': '^0.0.16' for DynamoDB support",
+  "version": "2.0.0",
+  "description": "Base template used for creating services.",
   "main": "handler.js",
   "repository": "git@github.com:source4societyorg/SCEPTER-service-template",
   "author": "Source4Society.Org",
   "license": "AGPL-3.0",
   "private": false,
   "scripts": {
-    "test": "eslint ./**/*.js --ignore-path .gitignore && jest --coverage",
+    "test": "eslint ./src/*.js ./tests/*.js && jest --coverage",
+    "build": "node ./config/initialize.js && powershell rm -Recurse -Force ./build/node_modules; rm ./build/*.js; rm ./build/*.yml; rm ./build/*.json; rm ./build/*.lock; cp ./src/handler.js ./build/handler.js; cp ./package.json ./build/; uglifyjs ./src/service.js -o ./build/service.js; cp ./config/service_name.yml ./build/service_name.yml; cd ./build/; yarn install --production",
+    "buildaws": "yarn build && powershell cp config/serverless_template_aws.yml ./build/serverless.yml",
+    "buildazure": "yarn build && powershell cp config/serverless_template_azure.yml ./build/serverless.yml",
     "sls": "sls"
   },
   "dependencies": {
-    "@source4society/scepter-handlerutilities-lib": "^1.1.1",
-    "@source4society/scepter-utility-lib": "^0.0.26",
-    "aws-sdk": "^2.149.0",
-    "immutable": "^3.8.2"
+    "@source4society/scepter-handlerutilities-lib": "^2.0.1",
+    "@source4society/scepter-utility-lib": "^5.0.0",
+    "aws-sdk": "^2.538.0"
   },
   "devDependencies": {
-    "docco": "^0.7.0",
-    "eslint": "^4.10.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jest": "^21.5.0",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "jest-cli": "^21.2.1",
-    "serverless": "^1.25.0",
-    "serverless-azure-functions": "https://github.com/serverless/serverless-azure-functions"
+    "docco": "^0.8.0",
+    "eslint": "^6.4.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.17.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest-cli": "^24.9.0",
+    "serverless": "^1.53.0",
+    "serverless-azure-functions": "^1.0.0",
+    "uglify-es": "^3.3.9"
   }
 }
