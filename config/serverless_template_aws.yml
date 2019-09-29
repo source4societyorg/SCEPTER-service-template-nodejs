@@ -11,9 +11,9 @@ functions:
   hello:
     handler: handler.hello
     events:
-      - https:
-        path: hello
-        method: post
+      - http:
+          path: hello
+          method: post
 package:
   exclude: 
     - 'test/**'
