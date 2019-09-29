@@ -1,7 +1,7 @@
 service: ${file(./service_name.yml):service}
 provider:
   name: aws
-  runtime: nodejs10.16
+  runtime: nodejs10.x
   stage: ${opt:stage, 'development'}
   environment:
     STAGE: ${self:provider.stage}

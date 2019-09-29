@@ -9,7 +9,7 @@
   "private": false,
   "scripts": {
     "test": "eslint ./src/*.js ./tests/*.js && jest --coverage",
-    "build": "node ./config/initialize.js && powershell rm -Recurse -Force ./build/node_modules; rm ./build/*.js; rm ./build/*.yml; rm ./build/*.json; rm ./build/*.lock; cp ./src/handler.js ./build/handler.js; cp ./package.json ./build/; uglifyjs ./src/service.js -o ./build/service.js; cp ./config/service_name.yml ./build/service_name.yml; cd ./build/; yarn install --production",
+    "build": "node ./config/initialize.js && powershell rm -Recurse -Force ./build/node_modules; rm ./build/*.js; rm ./build/*.yml; rm ./build/*.json; rm ./build/*.lock; cp ./src/handler.js ./build/handler.js; cp ./package.json ./build/; uglifyjs ./src/service.js -o ./build/service.js; cp ./config/service_name.yml ./build/service_name.yml; cd ./build/",
     "buildaws": "yarn build && powershell cp config/serverless_template_aws.yml ./build/serverless.yml",
     "buildazure": "yarn build && powershell cp config/serverless_template_azure.yml ./build/serverless.yml",
     "sls": "sls"
