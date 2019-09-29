@@ -1,4 +1,4 @@
-const hello = require('../src/handler')
+const { hello } = require('../src/handler')
 const HelloService = require('../src/service')
 
 test('hello handler executes serviceCall and catches errors', (done) => {

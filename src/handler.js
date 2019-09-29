@@ -10,4 +10,4 @@ function hello (event, context, callback) {
   }
 }
 
-module.exports = hello
+module.exports.hello = hello
